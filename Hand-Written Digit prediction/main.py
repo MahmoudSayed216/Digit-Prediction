@@ -66,15 +66,14 @@ def draw(win, grid):
 
 def make_prediction():
     num_array = np.array(grid)
-    num_array = num_array[:, :, 1] # all channels basically have the exact same values since the color is black,
-                                   #so one channel is enough
+    num_array = num_array[:, :, 1] # all RGB channels basically have the exact same values 
+                                   #since the color is black, so one channel is enough
     blurred_image = gaussian_blur(num_array)
     # grid = downsampled_image
-    print(blurred_image.shape)
-    num_array = blurred_image.reshape(784)
-    inv_digit = -1*num_array + 255 
-    print(inv_digit.shape)
-    prediction = model.predict([inv_digit/255])[0]
+    blurred_image = blurred_image.reshape(784)
+    inv_digit = -1*blurred_image + 255 ## black becomes white and white becomes black
+
+    prediction = model.predict([inv_digit/255])[0] #normalizing the input before passing it to the model
     OUTPUT_BUTTON_ISH.text = f"The Digit is: {prediction}"
 
 grid = init_grid(ROWS, COLS, WHITE)
