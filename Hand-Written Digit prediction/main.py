@@ -30,12 +30,11 @@ def draw_grid(win, grid):
         for j, pixel in enumerate(row):
             pg.draw.rect(win, pixel, (j*PIXEL_SIZE, i*PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE))
     ## placing lines vertically and horizontally between the rectangles to make it look like a grid             
-    if DRAW_GRID_LINES:
-        for i in range(ROWS+1):
-            pg.draw.line(win, BLACK, (0, i*PIXEL_SIZE),
-                         (WIDTH, i*PIXEL_SIZE))
-        for i in range(COLS+1):
-            pg.draw.line(win, BLACK, (i*PIXEL_SIZE, 0), (i*PIXEL_SIZE, HEIGHT- TOOLBAR_HEIGHT))
+
+    for i in range(ROWS+1):
+        pg.draw.line(win, BLACK, (0, i*PIXEL_SIZE),(WIDTH, i*PIXEL_SIZE))
+    for i in range(COLS+1):
+        pg.draw.line(win, BLACK, (i*PIXEL_SIZE, 0), (i*PIXEL_SIZE, HEIGHT- TOOLBAR_HEIGHT))
 
 def clear_grid():
     for i in range(ROWS):
